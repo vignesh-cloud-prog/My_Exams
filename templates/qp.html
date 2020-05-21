@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{%static 'question_papers/qp.css'%}">
+</head>
+
+<body>
+    <!-- <form method="get"> -->
+    <!-- {{myfilter.form}} -->
+    <!--      -->
+    <!-- <button type="submit">Filter</button> -->
+    <!-- </form> -->
+    {% comment %} {% load media %} {% endcomment %}
+
+
+
+    <h1>{{Select}}</h1>
+    {% for qp in allqp %}
+    <a href="{{qp.college}}">
+        <!-- <img src="{%static 'question_papers/images/college.png' %}" alt="#"> -->
+        <h4>{{qp.college}}</h4>
+    </a>
+    {% endfor %}
+
+    {% for uni in university %}
+    {% ifchanged college %}
+    <h1>{{uni.university}} </h1>
+    {% endifchanged %}
+    <a href="{{uni.course}}">
+        <!-- <img src="{%static 'question_papers/images/college.png' %}" alt="#"> -->
+        <h4>{{uni.course}}</h4>
+    </a>
+    {% endfor %}
+
+    {% for clg in college %}
+    {% ifchanged college %}
+    <h1>{{clg.college}} </h1>
+    <!-- <img src="{%static 'question_papers/images/college.png'%}" alt="#"> -->
+    {% endifchanged %}
+    <li><a href=" {{clg.university}}">{{clg.university}}</li>
+    <!-- <img src="{%static 'question_papers/images/course.png'%}"alt="#"> -->
+    {% endfor %}
+
+
+    {% for cour in course %}
+    {% ifchanged course %}
+    <h1>{{cour.course}}</h1>
+    <!-- <img src="{%static 'question_papers/images/course.png'%}" alt="#"> -->
+    {% endifchanged %}
+    <li><a href="{{cour.year}}"> {{cour.year}} </li>
+    <!-- <img src="{%static 'question_papers/images/year.png'%}" -->
+    <!-- alt="#"></a> -->
+    {% endfor %}
+
+    {% for titles in year %}
+    {% ifchanged college %}
+    <h1>{{titles.college}}</h1>
+    <!-- <img src="{%static 'question_papers/images/college.png'%}" alt="#">  -->
+    <h3>{{titles.course}}</h3>
+    <!-- <img src="{%static 'question_papers/images/course.png'%}" alt="#">  -->
+    <h5>{{titles.year}} </h5>
+    <!-- <img src="{%static 'question_papers/images/year.png'%}" alt="#"> -->
+    {% endifchanged %}
+    {% endfor %}
+    {% for years in year %}
+    <li><a href="{{years.subject}}">{{years.subject}} 
+    <!-- <img src="{%static 'question_papers/images/subject.jpg'%}"alt="#"> -->
+        </a></li>
+    {% endfor %}
+
+    {% for title in paper %}
+    {% ifchanged course %}
+    <h1>{{title.course}}</h1>
+    <h3>{{title.subject}}-</h3>
+    <a href="../">
+        <h5>{{title.year}}</h5>
+    </a>
+    {% endifchanged %}
+    {% endfor %}
+    {% for prepaper in paper %}
+    <table>
+        <tr>
+            <th>{{prepaper.examination}} : </th>
+            <th id="side"><a href="{{prepaper.paper.url}}" download> download </a></th>
+        </tr>
+        <tr>
+            <td colspan="2"><iframe src="{{prepaper.paper.url}}" frameborder="0"></iframe></td>
+        </tr>
+    </table>
+
+    {% endfor %}
+
+
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+/* 
+.college{
+    width: 900px;
+    padding: 20px;
+    border: 3px solid black;
+    margin: 3px auto;
+}
+.college_ele{
+    border: 2px solid rgb(97, 97, 145);
+    padding: 10px;
+    margin: 30px;
+    width:200px;
+    background-color: rgb(247, 242, 225);
+    border-radius: 14px;
+    display: inline-block;
+
+}
+.college h1{
+    font-size: 20px;
+}
+.college h4{
+    display: inline-block;
+    width: 120%;
+    margin: auto;
+    padding-top: 2px;
+    box-sizing: border-box;
+    font-size: 30px;
+}
+.college img{
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    margin: auto;
+
+} */

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Results {% endblock title  %}
+{% block blogactive  %} active {% endblock blogactive %}
+
+{% block body %} 
+<div class="container my-3">
+<h4>Search Results :</h4>
+
+{% if allPosts|length == 0  %}
+  Your search - <b>{{query}} </b>- did not match any documents.<br>
+  Suggessions:<br>
+  <ul>
+    <li>Try different keywords</li>
+    <li>Make sure that all words are spelled correctly</li>
+    <li>Try more general keywords</li>
+    <li>Try fewer keywords</li>
+  </ul> 
+
+{% endif %}
+
+{% for post in allPosts%}
+
+    <div class="col-md-12">
+      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary">Article by {{post.author}} </strong>
+          <h3 class="mb-0"> {{post.title}} </h3>
+          <div class="mb-1 text-muted"> {{post.timesamp}}  </div>
+          <p class="card-text mb-auto"> {{post.content | truncatechars:300}} </p>
+          <a href="/blog/{{post.slug}}"  role="button" class="btn btn-primary">Continue reading</a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <svg class="bd-placeholder-img" width="300" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+        </div>
+      </div>
+    </div>
+      
+  {% endfor %}
+
+  
+  
+
+  {% endblock body %}
